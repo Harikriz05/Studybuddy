@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+            crossorigin="anonymous"></script>
+    
+    <style>
+        /* Set the background image for the "Notes" box */
+        body {
+          background-image: url("http://127.0.0.1:5000/static/images/pink-macaroon-sketchbook-colored-pencil.jpg"); /* Specify the path to your image */
+          background-size: cover; /* Cover the entire background */
+          background-repeat: no-repeat; /* Do not repeat the image */
+          background-attachment: fixed; /* Fixed background image */
+          background-color: rgba(39, 144, 205, 0.689);
+      }
+        
+        
+        
+        .notes-box {
+            background-image: url("C:/Users/swarna lakshmi/Flask-chat-app/images/messenger-communication-icon-mobile.jpg"); /* Specify the path to the Notes background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: monospace;
+            font-size: 25px;
+        }
+
+        /* Set the background image for the "Chat" box */
+        .chat-box {
+            background-image: url(); /* Specify the path to the Chat background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            font-family:monospace;
+            font-weight:bold;
+            font-size: 25px;
+          
+            
+        }
+
+        /* Style for the container */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100dvh; /* Set the container height to the full viewport height */
+        }
+
+        /* Style for the boxes */
+        .options-box {
+            border: 5px solid #0b0a0a;
+            border-radius: 5px;
+            padding: 100px;
+            text-align: center;
+            box-sizing:content-box;
+            margin: 90px;
+            color: #fff;
+            background-color: rgba(29, 60, 100, 0.655); /* Text color for better visibility on images */
+        }
+
+        /* Style for the option buttons */
+        .option-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: rgb(184, 36, 36); /* Semi-transparent background to improve text readability */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+          
+        }
+
+        /* Style for the option buttons on hover */
+        .option-button:hover {
+            background-color: rgba(244, 238, 238, 0.7); /* Slightly darker background on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Centered container for the dashboard -->
+    <div class="center-container">
+        <div class="options-box notes-box">
+            <a href="{{ url_for('notes') }}" class="option-button">Notes</a>
+        </div>
+        
+        <div class="options-box chat-box">
+            <a href="{{ url_for('room') }}" class="option-button">Chat</a>
+        </div>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        <section id="notes">
+            <!-- Content for the Notes section -->
+        </section>
+        
+        <section id="chat">
+           <style>
+            
+              body {
+                background-image: url({{url_for('static',filename='images/download (6).jpeg')}})
+              }</style>
+          
+        </section>
+        
+        {% endblock %}
+    </div>
+</body>
+</html>

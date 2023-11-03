@@ -1,0 +1,91 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d68686;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.upload-form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#file-input {
+  display: none;
+}
+
+label[for="file-input"] {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+label[for="file-input"]:hover {
+  background-color: #0056b3;
+}
+
+#upload-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#upload-button:hover {
+  background-color: #1d8c3b;
+}
+
+.notes-list {
+  text-align: center;
+}
+
+ul#note-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.note-item {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-item a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.delete-button {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  font-size: 1.2rem;
+}

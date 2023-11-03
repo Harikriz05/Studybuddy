@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Add this within the <head> tag of your 'base.html' or as a separate CSS file -->
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background-size: cover; /* This property ensures the image covers the entire background */
+    background-position: center; /* This centers the background image */
+    background-repeat: no-repeat;
+    background-image: url("static/images/BGIMAGES.avif")
+  }
+
+  form {
+    background-color: #0b5a7c;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 600px;
+    background-size: cover; /* This property ensures the image covers the entire background */
+    background-position: center; /* This centers the background image */
+    background-repeat: no-repeat;
+    background-image: url("static/images/75688.jpg")
+  }
+  
+
+  h3 {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .join {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .join input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .join button[type="submit"] {
+    flex: 0;
+    width: 30%;
+  }
+
+  .create-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .create-btn:hover {
+    background-color: #45a049;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul li {
+    color: #ff0000;
+  }
+</style>
+
+    <meta charset="UTF-8" />
+    <title>Chat App</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+
+    
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    
+  </head>
+  <body>
+    <div class="content">
+        {% block content %} {% endblock %}</div>
+  </body>
+</html>
