@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Signup Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}" />
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="form signup">
+        <br>
+        <header>Signup</header>
+        <form action="/signup" method="POST"> <!-- Changed the form action to /signup and added method="POST" -->
+          <input type="text" name="u" placeholder="Full name" required /> <!-- Added name attribute -->
+          <input type="text" name="e" placeholder="Email address" required /> <!-- Added name attribute -->
+          <input type="password" name="p" placeholder="Password" required /> <!-- Added name attribute -->
+          <div class="checkbox">
+            <input type="checkbox" id="signupCheck" />
+            <br>
+            
+            <label for="signupCheck">I accept all terms & conditions</label>
+          </div>
+          
+          <input type="submit" value="Signup" />
+        </form>
+        <br>
+        <div class="error bold">
+          {% if error %}
+            <span style="font-weight: bold;font-size:20px;color:rgb(15, 15, 15);">{{ error }}</span>
+          {% endif %}
+        </div>
+        <p style="text-align: center;">Already have an account? <a class="login-link" href="/login">Login</a></p>
+
+      </div>
+
+      <script>
+        const wrapper = document.querySelector(".wrapper"),
+          signupHeader = document.querySelector(".signup header"),
+          loginHeader = document.querySelector(".login header");
+
+        loginHeader.addEventListener("click", () => {
+          wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+          wrapper.classList.remove("active");
+        });
+      </script>
+    </section>
+  </body>
+</html>

@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_socketio import join_room, leave_room, send, SocketIO
+from pymongo import MongoClient
+
 import random
 from string import ascii_uppercase
 
@@ -20,10 +22,66 @@ def generate_unique_code(length):
     
     return code
 
+client = MongoClient("mongodb://localhost:27017/")
+db = client["signup_db"]
+collection = db["users"]
+
+import re  # Import the regular expression module
+
+import re  # Import the regular expression module
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        email = request.form['e']  # Access the 'e' field for email
+        username = request.form['u']  # Access the 'u' field for username
+        password = request.form['p']  # Access the 'p' field for password
+
+        # Check the password length and email format
+        if len(password) < 8 or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return render_template('signup.html', error="Password must be at least 8 characters long or check the email format")
+
+        # Check if the email already exists in the database
+        existing_user = collection.find_one({'email': email})
+        if existing_user:
+            return render_template('signup.html', error="Email already exists")
+        
+        existing_user_username = collection.find_one({'username': username})
+        if existing_user_username:
+            return render_template('signup.html', error="Username already exists")
+
+
+        # If both checks pass and the email is not found in the database, insert the data into the database
+        data = {'email': email, 'username': username, 'password': password}
+        collection.insert_one(data)
+        return redirect(url_for('front'))
+
+    return render_template('signup.html')
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        # Check if user exists in the database
+        user = collection.find_one({"email": email, "password": password})
+
+        if user:
+            return redirect(url_for('front'))
+        else:
+            return redirect(url_for('dashboard'))
+
+    return render_template("login.html")
+
+
+
+
+
 
 @app.route("/")
 def dashboard():
-    return render_template("index2.html")
+    return render_template("frontpage.html")
 
 @app.route("/home", methods=["POST", "GET"])
 def home():
@@ -65,13 +123,15 @@ def room():
 def notes():
     return render_template("Notes.html")
 
-@app.route("/loginpage")
-def loginpage():
-    return render_template("loginpage.html")
+@app.route("/front")
+def front():
+    return render_template("index2.html")
 
 @app.route("/profile")
 def profile():
-    return render_template("profile_template.html")
+    user_name = "Studybuddies"
+    return render_template("profile_template.html",user_name=user_name)
+
 
 @socketio.on("message")
 def message(data):
@@ -121,3 +181,4 @@ def disconnect():
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, host='0.0.0.0', port=80)
+

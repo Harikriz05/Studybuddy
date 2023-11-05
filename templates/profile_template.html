@@ -404,7 +404,7 @@
 <div class="top-breadcrumb">
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
-<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+<li class="breadcrumb-item"><a href="{{ url_for('front') }}">Home</a></li>
 <li class="breadcrumb-item active" aria-current="page">Basic Table</li>
 </ol>
 </nav>
@@ -417,7 +417,7 @@
 <div class="card-body">
 <div class="text-center">
 <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt class="user-profile">
-<h3>John Doe</h3>
+<h3>{{user_name}}</h3>
 
 <div class="d-flex align-items-center justify-content-center mb-3">
 <i class="fas fa-star text-info"></i>
@@ -484,7 +484,7 @@
 <a class="nav-link" id="pills-education-tab" data-toggle="pill" href="#pills-education" role="tab" aria-selected="false">Educational qualification</a>
 </li>
 
-<a class="nav-link" id="pills-tasks-tab" href="/" role="tab" aria-selected="false">Log Out</a>
+<a class="nav-link" id="pills-tasks-tab" href="{{ url_for('front') }}" role="tab" aria-selected="false">Log Out</a>
 
   
 
