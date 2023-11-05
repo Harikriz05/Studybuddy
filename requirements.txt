@@ -41,6 +41,7 @@ ply==3.11
 prettytable==0.7.2
 prompt-toolkit==3.0.24
 pycparser==2.20
+pymongo==4.5.0
 pyrsistent==0.17.3
 pyserial==3.4
 PySocks==1.7.1
