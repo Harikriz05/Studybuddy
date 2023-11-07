@@ -36,23 +36,31 @@ def signup():
         email = request.form['e']  # Access the 'e' field for email
         username = request.form['u']  # Access the 'u' field for username
         password = request.form['p']  # Access the 'p' field for password
+        preferred_subjects = request.form['preferred_subjects']  # New field for preferred subjects
+        about_me = request.form['about_me']  # New field for about me
+        education = request.form['education']  # New field for education
 
         # Check the password length and email format
         if len(password) < 8 or not re.match(r"[^@]+@[^@]+\.[^@]+", email):
             return render_template('signup.html', error="Password must be at least 8 characters long or check the email format")
 
-        # Check if the email already exists in the database
+        # Check if the email and username already exist in the database
         existing_user = collection.find_one({'email': email})
+        existing_user_username = collection.find_one({'username': username})
         if existing_user:
             return render_template('signup.html', error="Email already exists")
-        
-        existing_user_username = collection.find_one({'username': username})
         if existing_user_username:
             return render_template('signup.html', error="Username already exists")
 
-
         # If both checks pass and the email is not found in the database, insert the data into the database
-        data = {'email': email, 'username': username, 'password': password}
+        data = {
+            'email': email,
+            'username': username,
+            'password': password,
+            'preferred_subjects': preferred_subjects,
+            'about_me': about_me,
+            'education': education
+        }
         collection.insert_one(data)
         return redirect(url_for('front'))
 
@@ -127,11 +135,14 @@ def notes():
 def front():
     return render_template("index2.html")
 
-@app.route("/profile")
-def profile():
-    user_name = "Studybuddies"
-    return render_template("profile_template.html",user_name=user_name)
+@app.route("/premium")
+def premium():
+    return render_template("premimum_trial.html")
 
+@app.route('/profile')
+def profile():
+    return render_template("profile.html")
+    
 
 @socketio.on("message")
 def message(data):
