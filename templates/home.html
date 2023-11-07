@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <form method="post" class="buttons">
-  <h3>Enter The Chat Room</h3>
-  <div>
-    <label>Name:</label>
+  <h3 style="font-family:monospace; font-size: 30px; color: #f5f3f3; font-weight:bolder">Enter The Chat Room</h3>
+
+  <div style="display: flex; align-items: center;">
+    <label style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 24px; color: #f5f3f3; font-weight: bolder;margin-right: 20px; margin-top:-10px">Name:</label>
     <input
       type="text"
       placeholder="Pick a name!"
@@ -10,11 +11,12 @@
       value="{{name}}"
     />
   </div>
+  
   <div class="join">
     <input type="text" placeholder="Room Code" name="code" value="{{code}}" />
     <button type="submit" name="join">Join a Room</button>
   </div>
-  <button type="submit" name="create" class="create-btn">Create a Room</button>
+  <button type="submit" name="create" class="create-btn" style="font-family:sans-serif;font-size:20px;font-weight:bolder">Create a Room</button>
   {% if error %}
   <ul>
     <li>{{error}}</li>
